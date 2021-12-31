@@ -1,0 +1,250 @@
+import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
+
+import java.nio.file.Files
+import java.nio.file.Paths
+
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+java {
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    compileTestJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+ant.importBuild('build.xml') { String oldTargetName ->
+    return 'ant_' + oldTargetName
+}
+
+repositories {
+    maven {
+        url "https://mvn.fanruan.com/repository/maven-public/"
+    }
+}
+
+configurations {
+    // 插件包构建依赖的主jar
+    implementation.extendsFrom fineLibConfiguration
+    // 插件包构建依赖的额外jar
+    implementation.extendsFrom extraLibConfiguration
+}
+
+ext {
+    jarVersion = project.properties['jarVersion']
+            ? project.properties['jarVersion'].toString() : '11.0-RELEASE-SNAPSHOT'
+    biJarVersion = "5.1-RELEASE-SNAPSHOT"
+    biSQLJarVersion = "5.1.1-RELEASE-SNAPSHOT"
+    baseDir = getProjectDir().getAbsolutePath()
+    outputPath = findOutputPath(baseDir)
+    ignoreTestFailureSetting = true
+    languageLevelSetting = 1.8
+}
+
+dependencies {
+    api project(path: ':base-lib', configuration: 'default')
+    api project(path: ':els', configuration: 'default')
+
+    fineLibConfiguration 'com.fr.intelligence:fine-swift:' + jarVersion
+    fineLibConfiguration 'com.fr.third:fine-third:' + jarVersion
+    fineLibConfiguration 'com.fr.activator:fine-activator:' + jarVersion
+    fineLibConfiguration 'com.fr.core:fine-core:' + jarVersion
+    fineLibConfiguration 'com.fr.webui:fine-webui:' + jarVersion
+    fineLibConfiguration 'com.fr.datasource:fine-datasource:' + jarVersion
+    fineLibConfiguration 'com.fr.decision:fine-decision:' + jarVersion
+    fineLibConfiguration 'com.fr.decision:fine-decision-report:' + jarVersion
+    fineLibConfiguration 'com.fr.schedule:fine-schedule:' + jarVersion
+    fineLibConfiguration 'com.fr.schedule:fine-schedule-report:' + jarVersion
+    fineLibConfiguration 'com.fr.report:fine-report-engine:' + jarVersion
+    fineLibConfiguration 'com.fr.report:fine-report-designer:' + jarVersion
+
+    fineLibConfiguration 'com.finebi:fine-decision-bi:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-schedule-bi:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-bi-foundation:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-bi-adapter:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-bi-engine-spider:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-bi-engine-third:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-bi-query:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-bi-query-excel:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-bi-query-third:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-bi-scheduler:' + biJarVersion
+    fineLibConfiguration 'com.finebi:fine-bi-middle:' + biJarVersion
+
+    fineLibConfiguration 'com.finebi:fine-bi-sql-translator:' + biSQLJarVersion
+
+    fineLibConfiguration 'org.apache.tomcat:tomcat-catalina:8.5.32'
+
+    implementation files("${System.properties['java.home']}/../lib/tools.jar")
+
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.easymock:easymock:3.5.1"
+    testImplementation "org.powermock:powermock-api-easymock:1.7.1"
+    testImplementation "org.powermock:powermock-module-junit4:1.7.1"
+    testImplementation "org.assertj:assertj-core:2.9.1"
+    testImplementation "org.openjdk.jmh:jmh-core:1.21"
+    testImplementation "org.openjdk.jmh:jmh-generator-annprocess:1.21"
+    testImplementation 'com.h2database:h2:1.4.200'
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'java-gradle-plugin'
+    apply plugin: 'idea'
+
+    group 'xyz.yaohwu.plugin.els'
+
+    sourceCompatibility = languageLevelSetting
+    targetCompatibility = languageLevelSetting
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    repositories {
+        maven {
+            url 'http://mvn.finedevelop.com/repository/maven-public/'
+        }
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+        mavenCentral()
+        mavenLocal()
+    }
+
+    idea {
+        module {
+            inheritOutputDirs = false
+            outputDir = file(outputPath + "/classes")
+            testOutputDir = file(outputPath + "/test-classes")
+            languageLevel = new IdeaLanguageLevel(sourceCompatibility)
+            targetBytecodeVersion = targetCompatibility
+        }
+    }
+
+    dependencies {
+        implementation 'com.fr.intelligence:fine-swift:' + jarVersion
+        implementation 'com.fr.third:fine-third:' + jarVersion
+        implementation 'com.fr.activator:fine-activator:' + jarVersion
+        implementation 'com.fr.core:fine-core:' + jarVersion
+        implementation 'com.fr.webui:fine-webui:' + jarVersion
+        implementation 'com.fr.datasource:fine-datasource:' + jarVersion
+        implementation 'com.fr.decision:fine-decision:' + jarVersion
+        implementation 'com.fr.decision:fine-decision-report:' + jarVersion
+        implementation 'com.fr.schedule:fine-schedule:' + jarVersion
+        implementation 'com.fr.schedule:fine-schedule-report:' + jarVersion
+        implementation 'com.fr.report:fine-report-engine:' + jarVersion
+        implementation 'com.fr.report:fine-report-designer:' + jarVersion
+
+        implementation 'com.finebi:fine-decision-bi:' + biJarVersion
+        implementation 'com.finebi:fine-schedule-bi:' + biJarVersion
+        implementation 'com.finebi:fine-bi-foundation:' + biJarVersion
+        implementation 'com.finebi:fine-bi-adapter:' + biJarVersion
+        implementation 'com.finebi:fine-bi-engine-spider:' + biJarVersion
+        implementation 'com.finebi:fine-bi-engine-third:' + biJarVersion
+        implementation 'com.finebi:fine-bi-query:' + biJarVersion
+        implementation 'com.finebi:fine-bi-query-excel:' + biJarVersion
+        implementation 'com.finebi:fine-bi-query-third:' + biJarVersion
+        implementation 'com.finebi:fine-bi-scheduler:' + biJarVersion
+        implementation 'com.finebi:fine-bi-middle:' + biJarVersion
+
+        implementation 'com.finebi:fine-bi-sql-translator:' + biSQLJarVersion
+
+        implementation 'org.apache.tomcat:tomcat-catalina:8.5.32'
+
+        implementation files("${System.properties['java.home']}/../lib/tools.jar")
+
+        testImplementation "junit:junit:4.12"
+        testImplementation "org.easymock:easymock:3.5.1"
+        testImplementation "org.powermock:powermock-api-easymock:1.7.1"
+        testImplementation "org.powermock:powermock-module-junit4:1.7.1"
+        testImplementation "org.assertj:assertj-core:2.9.1"
+        testImplementation "org.openjdk.jmh:jmh-core:1.21"
+        testImplementation "org.openjdk.jmh:jmh-generator-annprocess:1.21"
+        testImplementation 'com.h2database:h2:1.4.200'
+    }
+}
+
+def findOutputPath(String baseDir) {
+    def xmlSlurper = new XmlSlurper()
+    def result = xmlSlurper.parse(new File(Paths.get(baseDir, "plugin.xml").toString()))
+    def idNode = result.id
+    def id = idNode.text()
+    def versionNode = result.version
+    def version = versionNode.text()
+    if (id != "" && version != "") {
+        return Paths.get(baseDir, "webroot", "WEB-INF", "plugins", "plugin-" + id + "-" + version).toString()
+    }
+    return Paths.get(baseDir, "target").toString()
+}
+
+test {
+    useJUnit()
+    forkEvery = 1
+
+    filter {
+        includeTestsMatching "xyz.yaohwu.plugin.*"
+    }
+}
+
+task copyFineLib(type: Copy) {
+    into baseDir + '/lib/report/'
+    from configurations.fineLibConfiguration
+}
+
+task copyExtraLib(type: Copy) {
+    into baseDir + '/lib/'
+    from configurations.extraLibConfiguration
+}
+
+task cleanReportLibJar(type: Delete) {
+    delete fileTree(baseDir + '/lib/report/').matching {
+        include "*.jar"
+    }
+}
+
+task cleanLastResultJar(type: Delete) {
+    java.nio.file.Path dir = Paths.get(baseDir + '/')
+    Files.walk(dir, 1)
+            .filter { p -> p != dir }
+            .map { p -> p.getFileName().toString() }
+            .filter {
+                p ->
+                    (p.startsWith("fr-plugin-entry-link-share")
+                            || p == "目录链接分享")
+            }
+            .forEach { p ->
+                delete p
+            }
+}
+
+task copyLib() {
+    dependsOn cleanLastResultJar
+    dependsOn cleanReportLibJar
+    dependsOn copyFineLib
+    dependsOn copyExtraLib
+}
+
+'ant_prepare' {
+    dependsOn copyLib
+    doFirst {
+        println 'prepare report lib'
+    }
+}
+
+task buildPluginInstallPackage(dependsOn: "ant_jar",) {
+    doLast {
+        println 'plugin install package built by gradle'
+    }
+}
+
+clean.dependsOn cleanReportLibJar
+jar.dependsOn buildPluginInstallPackage

@@ -1,0 +1,12 @@
+pluginManagement {
+    repositories {
+        maven {
+            url 'http://mvn.finedevelop.com/repository/maven-public/'
+        }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'plugin-entry-link-share'
+
+include 'base-lib', 'els'

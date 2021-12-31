@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>xyz.yaohwu.plugin.els</groupId>
+    <artifactId>plugin-entry-link-share</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>base-lib</module>
+        <module>els</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>fanruan</id>
+            <name>fanruan</name>
+            <url>https://mvn.fanruan.com/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>fanruan</id>
+            <name>fanruan</name>
+            <url>https://mvn.fanruan.com/repository/maven-public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <properties>
+        <!---如果要更改调试插件，改这里的配置就可以了-->
+        <!--source code path-->
+        <projectPath>/Users/yaohwu/finecode/plugin-entry-link-share</projectPath>
+        <!--自行修改为自己的web-inf路径-->
+        <outputPath>
+            /Users/yaohwu/finecode/release-core-11.0/webroot/WEB-INF/plugins/plugin-xyz.yaohwu.plugin.els-1.0.0
+        </outputPath>
+        <bi-sql-version>5.1.1-RELEASE-SNAPSHOT</bi-sql-version>
+        <bi-branch-version>5.1-RELEASE-SNAPSHOT</bi-branch-version>
+        <branch-version>11.0-RELEASE-SNAPSHOT</branch-version>
+        <branch-version-for-bi>10.0-RELEASE-SNAPSHOT</branch-version-for-bi>
+    </properties>
+
+    <dependencies>
+        <!--test dependency-->
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>3.5.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>1.7.4</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.objenesis</groupId>
+                    <artifactId>objenesis</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-easymock</artifactId>
+            <version>1.7.4</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.objenesis</groupId>
+                    <artifactId>objenesis</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--other-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+
+        <!--fine jar dependency-->
+        <dependency>
+            <groupId>com.fr.third</groupId>
+            <artifactId>fine-third</artifactId>
+            <version>${branch-version}</version>
+        </dependency>
+
+        <!--fine bi jar dependency-->
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-schedule-bi</artifactId>
+            <version>${branch-version-for-bi}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-decision-bi</artifactId>
+            <version>${branch-version-for-bi}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-decision-webui-bi</artifactId>
+            <version>${branch-version-for-bi}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-sql-translator</artifactId>
+            <version>${bi-sql-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-adapter</artifactId>
+            <version>${bi-branch-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-foundation</artifactId>
+            <version>${bi-branch-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-engine-spider</artifactId>
+            <version>${bi-branch-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-engine-third</artifactId>
+            <version>${bi-branch-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-query</artifactId>
+            <version>${bi-branch-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-query-excel</artifactId>
+            <version>${bi-branch-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-query-third</artifactId>
+            <version>${bi-branch-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-scheduler</artifactId>
+            <version>${bi-branch-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.finebi</groupId>
+            <artifactId>fine-bi-middle</artifactId>
+            <version>${bi-branch-version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <outputDirectory>${outputPath}/classes</outputDirectory>
+        <testOutputDirectory>${outputPath}/test-classes</testOutputDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                    <proc>none</proc>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

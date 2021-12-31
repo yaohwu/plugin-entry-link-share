@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<plugin>
+    <id>xyz.yaohwu.plugin.entry.link.share.v11</id>
+    <name><![CDATA[目录链接分享]]></name>
+    <active>yes</active>
+    <hidden>no</hidden>
+    <auto-update>true</auto-update>
+    <sync>no</sync>
+    <version>1.0.0</version>
+    <env-version>11.0~11.0</env-version>
+    <jartime>2021-08-30</jartime>
+    <vendor>yaohwu</vendor>
+    <description><![CDATA[获取决策平台挂在目录的超链用于分享]]></description>
+    <workspace-independent>yes</workspace-independent>
+    <change-notes><![CDATA[
+        [2021-12-31] 初次发布 <br/>
+    ]]></change-notes>
+    <prefer-packages>
+        <prefer-package>xyz.yaohwu.plugin.els</prefer-package>
+    </prefer-packages>
+    <extra-core>
+        <LocaleFinder class="x"/>
+    </extra-core>
+    <extra-decision>
+        <SystemOptionProvider class="x"/>
+    </extra-decision>
+    <lifecycle-monitor class="x"/>
+    <function-recorder class="x"/>
+</plugin>
