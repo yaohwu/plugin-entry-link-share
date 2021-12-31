@@ -79,7 +79,7 @@ dependencies {
 
     fineLibConfiguration 'com.finebi:fine-bi-sql-translator:' + biSQLJarVersion
 
-    fineLibConfiguration 'org.apache.tomcat:tomcat-catalina:8.5.32'
+    fineLibConfiguration 'org.apache.tomcat:tomcat-catalina:8.5.72'
 
     implementation files("${System.properties['java.home']}/../lib/tools.jar")
 
@@ -158,7 +158,7 @@ allprojects {
 
         implementation 'com.finebi:fine-bi-sql-translator:' + biSQLJarVersion
 
-        implementation 'org.apache.tomcat:tomcat-catalina:8.5.32'
+        implementation 'org.apache.tomcat:tomcat-catalina:8.5.72'
 
         implementation files("${System.properties['java.home']}/../lib/tools.jar")
 

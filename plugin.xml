@@ -19,11 +19,11 @@
         <prefer-package>xyz.yaohwu.plugin.els</prefer-package>
     </prefer-packages>
     <extra-core>
-        <LocaleFinder class="x"/>
+        <LocaleFinder class="xyz.yaohwu.plugin.els.locale.ELSLocaleFinder"/>
     </extra-core>
     <extra-decision>
-        <SystemOptionProvider class="x"/>
+        <SystemOptionProvider class="xyz.yaohwu.plugin.els.decision.system.ELSOption"/>
     </extra-decision>
-    <lifecycle-monitor class="x"/>
-    <function-recorder class="x"/>
+    <lifecycle-monitor class="xyz.yaohwu.plugin.els.lifecycle.ELSLifecycleMonitor"/>
+    <function-recorder class="xyz.yaohwu.plugin.els.locale.ELSLocaleFinder"/>
 </plugin>
