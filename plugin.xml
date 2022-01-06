@@ -17,13 +17,14 @@
     ]]></change-notes>
     <prefer-packages>
         <prefer-package>xyz.yaohwu.plugin.els</prefer-package>
+        <prefer-package>com.fr.plugin.els</prefer-package>
     </prefer-packages>
     <extra-core>
-        <LocaleFinder class="xyz.yaohwu.plugin.els.locale.ELSLocaleFinder"/>
+        <LocaleFinder class="com.fr.plugin.els.locale.ELSLocaleFinder"/>
     </extra-core>
     <extra-decision>
-        <SystemOptionProvider class="xyz.yaohwu.plugin.els.decision.system.ELSOption"/>
+        <SystemOptionProvider class="com.fr.plugin.els.system.ELSOption"/>
     </extra-decision>
-    <lifecycle-monitor class="xyz.yaohwu.plugin.els.lifecycle.ELSLifecycleMonitor"/>
-    <function-recorder class="xyz.yaohwu.plugin.els.locale.ELSLocaleFinder"/>
+    <lifecycle-monitor class="com.fr.plugin.els.lifecycle.ELSLifecycleMonitor"/>
+    <function-recorder class="com.fr.plugin.els.locale.ELSLocaleFinder"/>
 </plugin>

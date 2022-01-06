@@ -6,5 +6,5 @@ package xyz.yaohwu.plugin.els;
  */
 public class Constants {
     public static final String DEC_MANAGEMENT_MAINTENANCE_ELS_ID = "dec-management-maintenance-xyz-yaohwu-els";
-    public static final int DEC_MANAGEMENT_MAINTENANCE_ELS_INDEX = -1;
+    public static final int DEC_MANAGEMENT_MAINTENANCE_ELS_INDEX = 10086;
 }
