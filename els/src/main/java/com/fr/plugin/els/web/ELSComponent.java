@@ -1,4 +1,4 @@
-package xyz.yaohwu.plugin.els.web;
+package com.fr.plugin.els.web;
 
 import com.fr.web.struct.Component;
 import com.fr.web.struct.browser.RequestClient;
@@ -16,7 +16,7 @@ public class ELSComponent extends Component {
 
     @Override
     public ScriptPath script(RequestClient req) {
-        return ScriptPath.build("xyz/yaohwu/plugin/els/els.main.js");
+        return ScriptPath.build("xyz/yaohwu/plugin/els/web/els.main.js");
     }
 
 }

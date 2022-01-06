@@ -1,4 +1,4 @@
-package xyz.yaohwu.plugin.els.lifecycle;
+package com.fr.plugin.els.lifecycle;
 
 import com.fr.plugin.context.PluginContext;
 import com.fr.plugin.observer.inner.AbstractPluginLifecycleMonitor;

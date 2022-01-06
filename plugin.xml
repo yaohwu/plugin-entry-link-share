@@ -10,20 +10,21 @@
     <env-version>11.0~11.0</env-version>
     <jartime>2021-08-30</jartime>
     <vendor>yaohwu</vendor>
-    <description><![CDATA[获取决策平台挂在目录的超链用于分享]]></description>
+    <description><![CDATA[获取决策平台挂载目录的超链用于分享]]></description>
     <workspace-independent>yes</workspace-independent>
     <change-notes><![CDATA[
         [2021-12-31] 初次发布 <br/>
     ]]></change-notes>
     <prefer-packages>
         <prefer-package>xyz.yaohwu.plugin.els</prefer-package>
+        <prefer-package>com.fr.plugin.els</prefer-package>
     </prefer-packages>
     <extra-core>
-        <LocaleFinder class="xyz.yaohwu.plugin.els.locale.ELSLocaleFinder"/>
+        <LocaleFinder class="com.fr.plugin.els.locale.ELSLocaleFinder"/>
     </extra-core>
     <extra-decision>
-        <SystemOptionProvider class="xyz.yaohwu.plugin.els.decision.system.ELSOption"/>
+        <SystemOptionProvider class="com.fr.plugin.els.system.ELSOption"/>
     </extra-decision>
-    <lifecycle-monitor class="xyz.yaohwu.plugin.els.lifecycle.ELSLifecycleMonitor"/>
-    <function-recorder class="xyz.yaohwu.plugin.els.locale.ELSLocaleFinder"/>
+    <lifecycle-monitor class="com.fr.plugin.els.lifecycle.ELSLifecycleMonitor"/>
+    <function-recorder class="com.fr.plugin.els.locale.ELSLocaleFinder"/>
 </plugin>

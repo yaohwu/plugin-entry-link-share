@@ -1,4 +1,4 @@
-package xyz.yaohwu.plugin.els.locale;
+package com.fr.plugin.els.locale;
 
 import com.fr.plugin.transform.FunctionRecorder;
 import com.fr.stable.fun.impl.AbstractLocaleFinder;

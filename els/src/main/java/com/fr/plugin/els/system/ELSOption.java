@@ -1,9 +1,9 @@
-package xyz.yaohwu.plugin.els.decision.system;
+package com.fr.plugin.els.system;
 
 import com.fr.decision.fun.impl.AbstractSystemOptionProvider;
 import com.fr.decision.web.MainComponent;
+import com.fr.plugin.els.web.ELSComponent;
 import com.fr.web.struct.Atom;
-import xyz.yaohwu.plugin.els.web.ELSComponent;
 
 import static xyz.yaohwu.plugin.els.Constants.DEC_MANAGEMENT_MAINTENANCE_ELS_ID;
 import static xyz.yaohwu.plugin.els.Constants.DEC_MANAGEMENT_MAINTENANCE_ELS_INDEX;
